@@ -1,10 +1,22 @@
 import 'package:awesome_snackbar_content/src/assets_path.dart';
 import 'package:awesome_snackbar_content/src/content_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui' as ui;
 
 class AwesomeSnackbarContent extends StatelessWidget {
+  const AwesomeSnackbarContent({
+    Key? key,
+    this.color,
+    this.titleTextStyle,
+    this.messageTextStyle,
+    required this.title,
+    required this.message,
+    required this.contentType,
+    this.inMaterialBanner = false,
+  }) : super(key: key);
+
   /// `IMPORTANT NOTE` for SnackBar properties before putting this in `content`
   /// backgroundColor: Colors.transparent
   /// behavior: SnackBarBehavior.floating
@@ -37,30 +49,20 @@ class AwesomeSnackbarContent extends StatelessWidget {
   /// if you want to customize the font style of the message
   final TextStyle? messageTextStyle;
 
-  const AwesomeSnackbarContent({
-    Key? key,
-    this.color,
-    this.titleTextStyle,
-    this.messageTextStyle,
-    required this.title,
-    required this.message,
-    required this.contentType,
-    this.inMaterialBanner = false,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     bool isRTL = Directionality.of(context) == TextDirection.rtl;
 
-    final size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     // screen dimensions
     bool isMobile = size.width <= 768;
     bool isTablet = size.width > 768 && size.width <= 992;
 
     /// for reflecting different color shades in the SnackBar
-    final hsl = HSLColor.fromColor(color ?? contentType.color!);
-    final hslDark = hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 1.0));
+    final HSLColor hsl = HSLColor.fromColor(color ?? contentType.color!);
+    final HSLColor hslDark =
+        hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 1.0));
 
     double horizontalPadding = 0.0;
     double leftSpace = size.width * 0.12;
@@ -80,11 +82,12 @@ class AwesomeSnackbarContent extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: horizontalPadding,
       ),
-      height: size.height * 0.125,
+      //height: size.height * 0.125,
+      height: 80.h,
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
-        children: [
+        children: <Widget>[
           /// background container
           Container(
             width: size.width,
@@ -104,7 +107,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
               ),
               child: SvgPicture.asset(
                 AssetsPath.bubbles,
-                height: size.height * 0.06,
+                height: 40.h,
                 width: size.width * 0.05,
                 colorFilter:
                     _getColorFilter(hslDark.toColor(), ui.BlendMode.srcIn),
@@ -128,16 +131,16 @@ class AwesomeSnackbarContent extends StatelessWidget {
                 : null,
             child: Stack(
               alignment: Alignment.center,
-              children: [
+              children: <Widget>[
                 SvgPicture.asset(
                   AssetsPath.back,
-                  height: size.height * 0.06,
+                  height: 40.h,
                   colorFilter:
                       _getColorFilter(hslDark.toColor(), ui.BlendMode.srcIn),
                   package: 'awesome_snackbar_content',
                 ),
                 Positioned(
-                  top: size.height * 0.015,
+                  top: 7.h,
                   child: SvgPicture.asset(
                     assetSVG(contentType),
                     height: size.height * 0.022,
@@ -153,28 +156,24 @@ class AwesomeSnackbarContent extends StatelessWidget {
             left: isRTL ? size.width * 0.03 : leftSpace,
             right: isRTL ? rightSpace : size.width * 0.03,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     /// `title` parameter
                     Expanded(
-                      flex: 3,
-                      child: Text(
-                        title,
-                        style: titleTextStyle ??
-                            TextStyle(
-                              fontSize: (!isMobile
-                                  ? size.height * 0.03
-                                  : size.height * 0.025),
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 30.h),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          message,
+                          style: messageTextStyle ??
+                              TextStyle(
+                                fontSize: size.height * 0.016,
+                                color: Colors.white,
+                              ),
+                        ),
                       ),
                     ),
                     IconButton(
@@ -199,19 +198,20 @@ class AwesomeSnackbarContent extends StatelessWidget {
                 ),
 
                 /// `message` body text parameter
-                Expanded(
-                  child: Text(
-                    message,
-                    style: messageTextStyle ??
-                        TextStyle(
-                          fontSize: size.height * 0.016,
-                          color: Colors.white,
-                        ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.015,
-                ),
+                // Expanded(
+                //   child: Text(
+                //     textAlign: TextAlign.center,
+                //     message,
+                //     style: messageTextStyle ??
+                //         TextStyle(
+                //           fontSize: size.height * 0.016,
+                //           color: Colors.white,
+                //         ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: size.height * 0.015,
+                // ),
               ],
             ),
           )
