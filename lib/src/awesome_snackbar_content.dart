@@ -84,6 +84,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
       ),
       //height: size.height * 0.125,
       height: 100.h,
+      width: (0.85).sw,
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
