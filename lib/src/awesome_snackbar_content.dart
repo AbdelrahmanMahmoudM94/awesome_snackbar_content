@@ -56,8 +56,8 @@ class AwesomeSnackbarContent extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     // screen dimensions
-    bool isMobile = size.width <= 768;
-    bool isTablet = size.width > 768 && size.width <= 992;
+    bool isMobile = size.width <= 600;
+    bool isTablet = size.width > 600 && size.width <= 1200;
 
     /// for reflecting different color shades in the SnackBar
     final HSLColor hsl = HSLColor.fromColor(color ?? contentType.color!);
@@ -72,10 +72,10 @@ class AwesomeSnackbarContent extends StatelessWidget {
       horizontalPadding = size.width * 0.01;
     } else if (isTablet) {
       leftSpace = size.width * 0.05;
-      horizontalPadding = size.width * 0.2;
+      horizontalPadding = size.width * 0.08;
     } else {
       leftSpace = size.width * 0.05;
-      horizontalPadding = size.width * 0.3;
+      horizontalPadding = size.width * 0.12;
     }
 
     return Container(
