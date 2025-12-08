@@ -6,16 +6,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui' as ui;
 
 class AwesomeSnackbarContent extends StatelessWidget {
-  const AwesomeSnackbarContent({
-    Key? key,
-    this.color,
-    this.titleTextStyle,
-    this.messageTextStyle,
-    required this.title,
-    required this.message,
-    required this.contentType,
-    this.inMaterialBanner = false,
-  }) : super(key: key);
+  const AwesomeSnackbarContent(
+      {Key? key,
+      this.color,
+      this.titleTextStyle,
+      this.backgroundCircle,
+      this.messageTextStyle,
+      required this.title,
+      required this.message,
+      required this.contentType,
+      this.inMaterialBanner = false,
+      this.leftCloseIconPosition,
+      this.topCloseIconPosition,
+      this.rightCloseIconPosition,
+      this.bottomCloseIconPosition,
+      this.icon})
+      : super(key: key);
 
   /// `IMPORTANT NOTE` for SnackBar properties before putting this in `content`
   /// backgroundColor: Colors.transparent
@@ -30,6 +36,12 @@ class AwesomeSnackbarContent extends StatelessWidget {
 
   /// title is the header String that will show on top
   final String title;
+  final Color? backgroundCircle;
+  final Widget? icon;
+  final double? leftCloseIconPosition;
+  final double? topCloseIconPosition;
+  final double? rightCloseIconPosition;
+  final double? bottomCloseIconPosition;
 
   /// message String is the body message which shows only 2 lines at max
   final String message;
@@ -78,123 +90,115 @@ class AwesomeSnackbarContent extends StatelessWidget {
       horizontalPadding = size.width * 0.12;
     }
 
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: horizontalPadding,
-      ),
-      //height: size.height * 0.125,
-      height: 80.h,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: <Widget>[
-          /// background container
-          Container(
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.topCenter,
+      children: <Widget>[
+        /// background container
+        Container(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             width: size.width,
             decoration: BoxDecoration(
               color: color ?? contentType.color,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
             ),
-          ),
 
-          /// Splash SVG asset
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-              ),
-              child: SvgPicture.asset(
-                AssetsPath.bubbles,
-                height: 40.h,
-                width: size.width * 0.05,
-                colorFilter:
-                    _getColorFilter(hslDark.toColor(), ui.BlendMode.srcIn),
-                package: 'awesome_snackbar_content',
-              ),
-            ),
-          ),
+            /// Splash SVG asset
+            // Positioned(
+            //   bottom: 0,
+            //   left: 0,
+            //   child: ClipRRect(
+            //     borderRadius: const BorderRadius.only(
+            //       bottomLeft: Radius.circular(20),
+            //     ),
+            //     child: SvgPicture.asset(
+            //       AssetsPath.bubbles,
+            //       height: 40.h,
+            //       width: size.width * 0.05,
+            //       colorFilter:
+            //           _getColorFilter(hslDark.toColor(), ui.BlendMode.srcIn),
+            //       package: 'awesome_snackbar_content',
+            //     ),
+            //   ),
+            // ),
 
-          // Bubble Icon
-          Positioned(
-            top: -size.height * 0.015,
-            left: !isRTL
-                ? leftSpace -
-                    8 -
-                    (isMobile ? size.width * 0.075 : size.width * 0.035)
-                : null,
-            right: isRTL
-                ? rightSpace -
-                    8 -
-                    (isMobile ? size.width * 0.075 : size.width * 0.035)
-                : null,
+            // Bubble Icon
+
+            /// content
             child: Stack(
-              alignment: Alignment.center,
               children: <Widget>[
-                SvgPicture.asset(
-                  AssetsPath.back,
-                  height: 40.h,
-                  colorFilter:
-                      _getColorFilter(hslDark.toColor(), ui.BlendMode.srcIn),
-                  package: 'awesome_snackbar_content',
-                ),
-                Positioned(
-                  top: 7.h,
-                  child: SvgPicture.asset(
-                    assetSVG(contentType),
-                    height: size.height * 0.022,
-                    package: 'awesome_snackbar_content',
-                  ),
-                )
-              ],
-            ),
-          ),
-
-          /// content
-          Positioned.fill(
-            left: isRTL ? size.width * 0.03 : leftSpace,
-            right: isRTL ? rightSpace : size.width * 0.03,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    /// `title` parameter
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 30.h),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                  child: Row(
+                    children: <Widget>[
+                      /// `title` parameter
+                      ///
+                      Container(
+                          height: 40.w,
+                          width: 40.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: backgroundCircle ?? Colors.white,
+                          ),
+                          child: Center(
+                              child: icon ??
+                                  SvgPicture.asset(
+                                    assetSVG(contentType),
+                                    height: 20.h,
+                                    width: 20.w,
+                                    colorFilter: _getColorFilter(
+                                        hslDark.toColor(), ui.BlendMode.srcIn),
+                                    package: 'awesome_snackbar_content',
+                                  ))),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Expanded(
                         child: Text(
-                          textAlign: TextAlign.center,
+                          //textAlign: TextAlign.center,
                           message,
                           style: messageTextStyle ??
                               TextStyle(
-                                fontSize: size.height * 0.016,
+                                fontFamily: "IBMPlexArabic",
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w400,
                                 color: Colors.white,
                               ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        if (inMaterialBanner) {
-                          ScaffoldMessenger.of(context)
-                              .hideCurrentMaterialBanner();
-                          return;
-                        }
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      },
-                      icon: Icon(
-                        Icons.close,
-                        color: Colors.white,
-                        size: size.height * 0.022,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: size.height * 0.005,
+                ),
+
+                Positioned(
+                  top: topCloseIconPosition,
+                  right: rightCloseIconPosition,
+                  bottom: bottomCloseIconPosition,
+                  left: leftCloseIconPosition,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (inMaterialBanner) {
+                            ScaffoldMessenger.of(context)
+                                .hideCurrentMaterialBanner();
+                            return;
+                          }
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 20.w,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 /// `message` body text parameter
@@ -213,10 +217,8 @@ class AwesomeSnackbarContent extends StatelessWidget {
                 //   height: size.height * 0.015,
                 // ),
               ],
-            ),
-          )
-        ],
-      ),
+            ))
+      ],
     );
   }
 

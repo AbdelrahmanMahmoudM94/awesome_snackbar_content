@@ -29,3 +29,129 @@ flutter:
   assets:
     - assets/
     - assets/types/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+
+    - family: IBMPlexArabic
+      fonts:
+        - asset: assets/fonts/IBMPlexSansArabic-ExtraLight.ttf
+          weight: 100
+        - asset: assets/fonts/IBMPlexSansArabic-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/IBMPlexSansArabic-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
+          weight: 700
+
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Mulish-BlackItalic.ttf
+          weight: 900
+        - asset: assets/fonts/Mulish-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish-BoldItalic.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Mulish-ExtraBoldItalic.ttf
+          weight: 800
+        - asset: assets/fonts/Mulish-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Mulish-ExtraLightItalic.ttf
+          weight: 200
+        - asset: assets/fonts/Mulish-Italic-VariableFont_wght.ttf
+          weight: 400
+        - asset: assets/fonts/Mulish-Italic.ttf
+          weight: 400
+        - asset: assets/fonts/Mulish-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Mulish-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/Mulish-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Mulish-MediumItalic.ttf
+          weight: 500
+        - asset: assets/fonts/Mulish-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish-SemiBoldItalic.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish-VariableFont_wght.ttf
+          weight: 400
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+          weight: 900
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-Italic.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Roboto-ThinItalic.ttf
+          weight: 100
+
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Lato-BlackItalic.ttf
+          weight: 900
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Lato-BoldItalic.ttf
+          weight: 700
+        - asset: assets/fonts/Lato-Italic.ttf
+          weight: 400
+        - asset: assets/fonts/Lato-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Lato-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/Lato-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Lato-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Lato-ThinItalic.ttf
+          weight: 100
+
+    - family: FascinateInline
+      fonts:
+        - asset: assets/fonts/FascinateInline-Regular.ttf
+          weight: 400
+    - family: Claudion
+      fonts:
+        - asset: assets/fonts/Claudion.ttf
+          weight: 400
