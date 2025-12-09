@@ -17,6 +17,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
       required this.contentType,
       this.inMaterialBanner = false,
       this.leftCloseIconPosition,
+      this.closeIconColor,
       this.topCloseIconPosition,
       this.rightCloseIconPosition,
       this.bottomCloseIconPosition,
@@ -48,6 +49,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
 
   /// `optional` color of the SnackBar/MaterialBanner body
   final Color? color;
+  final Color? closeIconColor;
 
   /// contentType will reflect the overall theme of SnackBar/MaterialBanner: failure, success, help, warning
   final ContentType contentType;
@@ -193,7 +195,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.close,
-                          color: Colors.white,
+                          color: closeIconColor ?? Colors.white,
                           size: 20.w,
                         ),
                       ),
